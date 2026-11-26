@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Filmes</title>
+
+    <style>
+
+        /* CONFIGURAÇÕES GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f9;
+            color: #263449;
+            padding: 5px;
+        }
+
+        .container {
+            width: 100%;
+            margin: auto;
+        }
+
+        /* CARTÕES */
+        .card {
+            background-color: #ffffff;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.10);
+        }
+
+        .card h2 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #17283f;
+        }
+
+        /* FORMULÁRIO */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .campo label {
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #263449;
+        }
+
+        .campo input,
+        .campo select {
+            width: 100%;
+            height: 32px;
+            padding: 5px 8px;
+            border: 1px solid #dce2ea;
+            border-radius: 4px;
+            font-size: 11px;
+            outline: none;
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .campo input:focus,
+        .campo select:focus {
+            border-color: #3478e5;
+        }
+
+        .campo input::placeholder {
+            color: #929ba8;
+        }
+
+        .campo input:disabled {
+            background-color: #e1e7ef;
+        }
+
+        /* BOTÕES */
+        .botoes {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .btn {
+            border: none;
+            padding: 9px 15px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .salvar {
+            background-color: #2868e8;
+        }
+
+        .alterar {
+            background-color: #e9ad62;
+        }
+
+        .excluir {
+            background-color: #e77d7d;
+        }
+
+        .limpar {
+            background-color: #64758e;
+        }
+
+        /* PESQUISA */
+        .filtros {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr) 1fr;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .limpar-filtros {
+            background-color: #64758e;
+            height: 32px;
+            width: 100%;
+        }
+
+        /* TABELA */
+        .aviso {
+            font-size: 10px;
+            color: #8793a3;
+            margin-bottom: 10px;
+        }
+
+        .tabela-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        thead {
+            background-color: #edf1f6;
+        }
+
+        th {
+            padding: 10px 8px;
+            text-align: left;
+            color: #263449;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid #e5e9ef;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f5fb;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 900px) {
+
+            .form-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .filtros {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filtros {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <!-- DADOS DO FILME -->
+    <section class="card">
+
+        <h2>Dados do Filme</h2>
+
+        <form>
+
+            <div class="form-grid">
+
+                <div class="campo">
+                    <label>ID</label>
+                    <input type="text" placeholder="Automático" disabled>
+                </div>
+
+                <div class="campo">
+                    <label>Título *</label>
+                    <input type="text" placeholder="Ex: O Poderoso Chefão">
+                </div>
+
+                <div class="campo">
+                    <label>Ano de Lançamento *</label>
+                    <input type="number" placeholder="Ex: 1972">
+                </div>
+
+                <div class="campo">
+                    <label>Gênero *</label>
+                    <input type="text" placeholder="Ex: Drama / Crime">
+                </div>
+
+                <div class="campo">
+                    <label>Diretor *</label>
+                    <input type="text" placeholder="Ex: Francis Ford Coppola">
+                </div>
+
+                <div class="campo">
+                    <label>Idioma *</label>
+                    <input type="text" placeholder="Ex: Inglês">
+                </div>
+
+                <div class="campo">
+                    <label>Duração (Minutos) *</label>
+                    <input type="number" placeholder="Ex: 175">
+                </div>
+
+                <div class="campo">
+                    <label>Classificação Indicativa *</label>
+                    <select>
+                        <option value="">Selecione...</option>
+                        <option>Livre</option>
+                        <option>10 anos</option>
+                        <option>12 anos</option>
+                        <option>14 anos</option>
+                        <option>16 anos</option>
+                        <option>18 anos</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label>Nota (0 a 10) *</label>
+                    <input type="number" step="0.1" min="0" max="10"
+                           placeholder="Ex: 9.2">
+                </div>
+
+            </div>
+
+            <div class="botoes">
+
+                <button type="button" class="btn salvar">Salvar</button>
+
+                <button type="button" class="btn alterar">Alterar</button>
+
+                <button type="button" class="btn excluir">Excluir</button>
+
+                <button type="reset" class="btn limpar">Limpar</button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- PESQUISAR FILMES -->
+    <section class="card">
+
+        <h2>Pesquisar Filmes</h2>
+
+        <div class="filtros">
+
+            <div class="campo">
+                <label>Título</label>
+                <input type="text" placeholder="Filtrar por título...">
+            </div>
+
+            <div class="campo">
+                <label>Gênero</label>
+                <input type="text" placeholder="Filtrar por gênero...">
+            </div>
+
+            <div class="campo">
+                <label>Ano de Lançamento</label>
+                <input type="number" placeholder="Ex: 1994">
+            </div>
+
+            <div class="campo">
+                <label>Diretor</label>
+                <input type="text" placeholder="Filtrar por diretor...">
+            </div>
+
+            <div class="campo">
+                <label>Duração Máxima (Min)</label>
+                <input type="number" placeholder="Até X minutos...">
+            </div>
+
+            <button class="btn limpar-filtros" type="button">
+                Limpar Filtros
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILMES CADASTRADOS -->
+    <section class="card">
+
+        <h2>Filmes Cadastrados</h2>
+
+        <p class="aviso">
+            💡 Clique em uma linha da tabela para carregar os dados no formulário e habilitar alteração ou exclusão.
+        </p>
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Ano</th>
+                    <th>Gênero</th>
+                    <th>Diretor</th>
+                    <th>Idioma</th>
+                    <th>Duração (Min)</th>
+                    <th>Duração (Hora)</th>
+                    <th>Classificação</th>
+                    <th>Nota</th>
+                    <th>Avaliação</th>
+                    <th>Criado Em</th>
+                    <th>Atualizado Em</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+                <!-- Filmes cadastrados aparecerão aqui -->
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>
