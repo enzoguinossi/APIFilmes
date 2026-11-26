@@ -1,0 +1,23 @@
+meta {
+  name: Buscar filmes por diretor
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/filmes/diretor?diretor={{$randomLoremWord}}
+  auth: none
+}
+
+params:query {
+  diretor: {{$randomLoremWord}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Retorna os filmes cujo diretor contém o texto informado, ignorando maiúsculas e minúsculas.
+}
+

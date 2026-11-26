@@ -1,0 +1,23 @@
+meta {
+  name: Deletar filme
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/api/filmes/:id
+  auth: none
+}
+
+params:path {
+  id: {{$randomInt}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Deleta um filme existente no banco de dados.
+}
+

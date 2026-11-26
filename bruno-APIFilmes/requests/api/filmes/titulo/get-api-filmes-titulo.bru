@@ -1,0 +1,23 @@
+meta {
+  name: Buscar filmes por título
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/filmes/titulo?titulo={{$randomLoremWord}}
+  auth: none
+}
+
+params:query {
+  titulo: {{$randomLoremWord}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Retorna os filmes cujo título contém o texto informado, ignorando maiúsculas e minúsculas.
+}
+

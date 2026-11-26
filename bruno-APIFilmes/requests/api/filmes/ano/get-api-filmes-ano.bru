@@ -1,0 +1,24 @@
+meta {
+  name: Buscar filmes por intervalo de anos
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/filmes/ano?inicio={{$randomInt}}&fim={{$randomInt}}
+  auth: none
+}
+
+params:query {
+  inicio: {{$randomInt}}
+  fim: {{$randomInt}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Retorna os filmes lançados entre o ano inicial e o ano final informados.
+}
+

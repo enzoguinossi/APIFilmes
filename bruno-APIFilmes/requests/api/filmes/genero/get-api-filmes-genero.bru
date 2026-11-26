@@ -1,0 +1,23 @@
+meta {
+  name: Buscar filmes por gênero
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/filmes/genero?genero={{$randomLoremWord}}
+  auth: none
+}
+
+params:query {
+  genero: {{$randomLoremWord}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Retorna os filmes do gênero informado, ignorando maiúsculas e minúsculas.
+}
+

@@ -1,0 +1,23 @@
+meta {
+  name: Buscar filmes por duração
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/filmes/duracao?duracao={{$randomInt}}
+  auth: none
+}
+
+params:query {
+  duracao: {{$randomInt}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Retorna os filmes com duração menor ou igual à informada, do lançamento mais novo para o mais antigo.
+}
+
