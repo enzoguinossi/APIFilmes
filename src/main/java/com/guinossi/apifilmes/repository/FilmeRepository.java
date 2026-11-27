@@ -9,8 +9,12 @@ import java.util.List;
 @Repository
 public interface FilmeRepository extends JpaRepository<Filme, Long> {
     List<Filme> findByTituloContainingIgnoreCase(String titulo);
+
     List<Filme> findByGeneroContainingIgnoreCase(String genero);
+
     List<Filme> findByAnoLancamentoBetween(int inicio, int fim);
+
     List<Filme> findByDiretorContainingIgnoreCase(String diretor);
+
     List<Filme> findByDuracaoMinutosIsLessThanEqualOrderByAnoLancamentoDesc(Integer duracao);
 }

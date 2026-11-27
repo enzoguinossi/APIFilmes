@@ -3,8 +3,6 @@ package com.guinossi.apifilmes.dto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.guinossi.apifilmes.entity.Filme;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,23 +23,6 @@ public class FilmeResponseDTO {
     private LocalDateTime criadoEm;
     private LocalDateTime atualizadoEm;
 
-    public enum Avaliacao_enum {
-        OBRAPRIMA("Obra-Prima"),
-        RECOMENDADO("Recomendado"),
-        REGULAR("Regular");
-
-        private final String descricao;
-
-        Avaliacao_enum(String descricao) {
-            this.descricao = descricao;
-        }
-
-        @JsonValue
-        public String getDescricao() {
-            return descricao;
-        }
-    }
-
     public FilmeResponseDTO() {
     }
 
@@ -58,6 +39,34 @@ public class FilmeResponseDTO {
         this.avaliacao = notaParaAvaliacao(filme.getNota());
         this.criadoEm = filme.getCriadoEm();
         this.atualizadoEm = filme.getAtualizadoEm();
+    }
+
+    private static String minutosParaHoras(int totalMinutos) {
+        int horas = totalMinutos / 60;
+        int minutos = totalMinutos % 60;
+        if (minutos == 0) {
+            return String.format("%dh", horas);
+        } else if (horas == 0) {
+            return String.format("%dmin", minutos);
+        } else return String.format("%dh e %dmin", horas, minutos);
+    }
+
+    private static Avaliacao_enum notaParaAvaliacao(double nota) {
+        if (nota > 9) {
+            return Avaliacao_enum.OBRAPRIMA;
+        } else if (nota < 7) {
+            return Avaliacao_enum.REGULAR;
+        } else return Avaliacao_enum.RECOMENDADO;
+    }
+
+    public static FilmeResponseDTO fromEntity(Filme filme) {
+        return new FilmeResponseDTO(filme);
+    }
+
+    public static List<FilmeResponseDTO> fromEntity(List<Filme> filmes) {
+        List<FilmeResponseDTO> listaFilmes = new ArrayList<>();
+        filmes.forEach(filme -> listaFilmes.add(fromEntity(filme)));
+        return listaFilmes;
     }
 
     public long getId() {
@@ -156,31 +165,20 @@ public class FilmeResponseDTO {
         this.atualizadoEm = atualizadoEm;
     }
 
-    private static String minutosParaHoras(int totalMinutos) {
-        int horas = totalMinutos / 60;
-        int minutos = totalMinutos % 60;
-        if (minutos == 0) {
-            return String.format("%dh", horas);
-        } else if (horas == 0) {
-            return String.format("%dmin", minutos);
-        } else return String.format("%dh e %dmin", horas, minutos);
-    }
+    public enum Avaliacao_enum {
+        OBRAPRIMA("Obra-Prima"),
+        RECOMENDADO("Recomendado"),
+        REGULAR("Regular");
 
-    private static Avaliacao_enum notaParaAvaliacao(double nota) {
-        if(nota > 9) {
-            return Avaliacao_enum.OBRAPRIMA;
-        } else if(nota < 7) {
-            return Avaliacao_enum.REGULAR;
-        } else return Avaliacao_enum.RECOMENDADO;
-    }
+        private final String descricao;
 
-    public static FilmeResponseDTO fromEntity(Filme filme) {
-        return new FilmeResponseDTO(filme);
-    }
+        Avaliacao_enum(String descricao) {
+            this.descricao = descricao;
+        }
 
-    public static List<FilmeResponseDTO> fromEntity(List<Filme> filmes) {
-        List<FilmeResponseDTO> listaFilmes = new ArrayList<>();
-        filmes.forEach(filme -> listaFilmes.add(fromEntity(filme)));
-        return listaFilmes;
+        @JsonValue
+        public String getDescricao() {
+            return descricao;
+        }
     }
 }

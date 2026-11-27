@@ -21,12 +21,14 @@ public class FilmeController {
         this.filmeService = filmeService;
     }
 
-    @PostMapping @Operation(summary = "Cadastrar filme", description = "Cria um novo filme no banco de dados.")
+    @PostMapping
+    @Operation(summary = "Cadastrar filme", description = "Cria um novo filme no banco de dados.")
     public ResponseEntity<FilmeResponseDTO> criar(@RequestBody @Valid FilmeRequestDTO filmeRequestDTO) {
         return ResponseEntity.status(201).body(filmeService.criar(filmeRequestDTO));
     }
 
-    @GetMapping @Operation(summary = "Listar filmes", description = "Lista todos os filmes cadastrados no banco de dados.")
+    @GetMapping
+    @Operation(summary = "Listar filmes", description = "Lista todos os filmes cadastrados no banco de dados.")
     public ResponseEntity<List<FilmeResponseDTO>> listar() {
         return ResponseEntity.status(200).body(filmeService.listar());
     }
@@ -66,12 +68,14 @@ public class FilmeController {
         return ResponseEntity.ok(filmeService.buscarPorDuracao(duracao));
     }
 
-    @PutMapping("/{id}") @Operation(summary = "Alterar filme", description = "Altera um filme existente no banco de dados.")
+    @PutMapping("/{id}")
+    @Operation(summary = "Alterar filme", description = "Altera um filme existente no banco de dados.")
     public ResponseEntity<FilmeResponseDTO> alterar(@PathVariable Long id, @RequestBody @Valid FilmeRequestDTO filmeRequestDTO) {
         return ResponseEntity.status(200).body(filmeService.alterar(id, filmeRequestDTO));
     }
 
-    @DeleteMapping("/{id}") @Operation(summary = "Deletar filme", description = "Deleta um filme existente no banco de dados.")
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deletar filme", description = "Deleta um filme existente no banco de dados.")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         filmeService.deletar(id);
         return ResponseEntity.status(204).build();

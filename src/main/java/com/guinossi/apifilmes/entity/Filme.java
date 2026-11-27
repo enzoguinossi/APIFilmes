@@ -1,13 +1,12 @@
 package com.guinossi.apifilmes.entity;
 
+import com.guinossi.apifilmes.dto.FilmeRequestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.guinossi.apifilmes.dto.FilmeRequestDTO;
 
 import java.time.LocalDateTime;
 
@@ -53,7 +52,6 @@ public class Filme {
         this.classificacaoIndicativa = filmeRequestDTO.getClassificacaoIndicativa();
         this.nota = filmeRequestDTO.getNota();
     }
-
 
 
     public String getTitulo() {
