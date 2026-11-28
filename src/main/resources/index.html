@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro de Filmes</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="container">
+
+    <!-- DADOS DO FILME -->
+    <section class="card">
+
+        <h2>Dados do Filme</h2>
+
+        <form id="formFilme">
+
+            <div class="form-grid">
+
+                <div class="campo">
+                    <label for="id">ID</label>
+                    <input type="text" id="id" placeholder="Automático" disabled>
+                </div>
+
+                <div class="campo">
+                    <label for="titulo">Título *</label>
+                    <input type="text" id="titulo" placeholder="Ex: O Poderoso Chefão" required>
+                </div>
+
+                <div class="campo">
+                    <label for="ano">Ano de Lançamento *</label>
+                    <input type="number" id="ano" min="1888" max="2100" placeholder="Ex: 1972" required>
+                </div>
+
+                <div class="campo">
+                    <label for="genero">Gênero *</label>
+                    <input type="text" id="genero" placeholder="Ex: Drama / Crime" required>
+                </div>
+
+                <div class="campo">
+                    <label for="diretor">Diretor *</label>
+                    <input type="text" id="diretor" placeholder="Ex: Francis Ford Coppola" required>
+                </div>
+
+                <div class="campo">
+                    <label for="idioma">Idioma *</label>
+                    <input type="text" id="idioma" placeholder="Ex: Inglês" required>
+                </div>
+
+                <div class="campo">
+                    <label for="duracao">Duração (Minutos) *</label>
+                    <input type="number" id="duracao" min="1" placeholder="Ex: 175" required>
+                </div>
+
+                <div class="campo">
+                    <label for="classificacao">Classificação Indicativa *</label>
+
+                    <select id="classificacao" required>
+                        <option value="">Selecione...</option>
+                        <option value="Livre">Livre</option>
+                        <option value="10 anos">10 anos</option>
+                        <option value="12 anos">12 anos</option>
+                        <option value="14 anos">14 anos</option>
+                        <option value="16 anos">16 anos</option>
+                        <option value="18 anos">18 anos</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="nota">Nota (0 a 10) *</label>
+                    <input type="number" id="nota" min="0" max="10" step="0.1" placeholder="Ex: 9.2" required>
+                </div>
+
+            </div>
+
+            <div class="botoes">
+
+                <button type="button" class="btn salvar" id="btnSalvar">
+                    Salvar
+                </button>
+
+                <button type="button" class="btn alterar" id="btnAlterar" disabled>
+                    Alterar
+                </button>
+
+                <button type="button" class="btn excluir" id="btnExcluir" disabled>
+                    Excluir
+                </button>
+
+                <button type="button" class="btn limpar" id="btnLimpar">
+                    Limpar
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- PESQUISAR FILMES -->
+    <section class="card">
+
+        <h2>Pesquisar Filmes</h2>
+
+        <div class="filtros">
+
+            <div class="campo">
+                <label for="filtroTitulo">Título</label>
+                <input type="text" id="filtroTitulo" placeholder="Filtrar por título...">
+            </div>
+
+            <div class="campo">
+                <label for="filtroGenero">Gênero</label>
+                <input type="text" id="filtroGenero" placeholder="Filtrar por gênero...">
+            </div>
+
+            <div class="campo">
+                <label for="filtroAno">Ano de Lançamento</label>
+                <input type="number" id="filtroAno" placeholder="Ex: 1994">
+            </div>
+
+            <div class="campo">
+                <label for="filtroDiretor">Diretor</label>
+                <input type="text" id="filtroDiretor" placeholder="Filtrar por diretor...">
+            </div>
+
+            <div class="campo">
+                <label for="filtroDuracao">Duração Máxima (Min)</label>
+                <input type="number" id="filtroDuracao" min="1" placeholder="Até X minutos...">
+            </div>
+
+            <button type="button" class="btn limpar-filtros" id="btnLimparFiltros">
+                Limpar Filtros
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILMES CADASTRADOS -->
+    <section class="card">
+
+        <h2>Filmes Cadastrados</h2>
+
+        <p class="aviso">
+            💡 Clique em uma linha da tabela para carregar os dados no formulário e habilitar alteração ou exclusão.
+        </p>
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Ano</th>
+                    <th>Gênero</th>
+                    <th>Diretor</th>
+                    <th>Idioma</th>
+                    <th>Duração (Min)</th>
+                    <th>Duração (Hora)</th>
+                    <th>Classificação</th>
+                    <th>Nota</th>
+                    <th>Avaliação</th>
+                    <th>Criado Em</th>
+                    <th>Atualizado Em</th>
+                </tr>
+                </thead>
+
+                <tbody id="listaFilmes"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
