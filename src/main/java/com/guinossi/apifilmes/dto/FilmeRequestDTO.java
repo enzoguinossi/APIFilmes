@@ -7,25 +7,28 @@ public class FilmeRequestDTO {
     @NotBlank
     private String titulo;
     @NotNull
-    @Min(value = 1888, message = "O ano deve ser superior a 1888!")
-    @Max(value = 2040, message = "O ano deve ser menor que 2040!")
+    @Min(value = 1888, message = "O ano deve ser superior ou igual a 1888!")
+    @Max(value = 2040, message = "O ano deve ser menor ou igual a 2040!")
     private Integer anoLancamento;
-    @NotBlank(message = "O genero deve ser preencido!")
+    @NotBlank(message = "O genero deve ser preenchido!")
+    @Pattern(regexp = "[\\p{L}\\p{M}\\s.'-]*", message = "O genero deve conter apenas letras!")
     private String genero;
     @NotBlank(message = "O diretor deve ser preenchido!")
+    @Pattern(regexp = "[\\p{L}\\p{M}\\s.'-]*", message = "O diretor deve conter apenas letras!")
     private String diretor;
-    @NotBlank
+    @NotBlank(message = "O idioma deve ser preenchido!")
+    @Pattern(regexp = "[\\p{L}\\p{M}\\s.'-]*", message = "O idioma deve conter apenas letras!")
     private String idioma;
-    @NotNull
-    @Min(1)
-    @Max(600)
+    @NotNull(message = "A duração deve ser preenchida!")
+    @Min(value = 1, message = "A duração deve ser maior ou igual a 1 minuto!")
+    @Max(value = 600, message = "A duração deve ser menor ou igual a 600 minutos!")
     private Integer duracaoMinutos;
-    @NotBlank
-    @Size(min = 1, max = 2)
+    @NotBlank(message = "A classificação indicativa deve ser preenchida!")
+    @Size(min = 1, max = 2, message = "A classificação indicativa deve ter entre 1 e 2 caracteres!")
     private String classificacaoIndicativa;
-    @NotNull
-    @Min(0)
-    @Max(10)
+    @NotNull(message = "A nota deve ser preenchida!")
+    @Min(value = 0, message = "A nota deve ser maior ou igual a 0!")
+    @Max(value = 10, message = "A nota deve ser menor ou igual a 10!")
     private Double nota;
 
     public FilmeRequestDTO() {

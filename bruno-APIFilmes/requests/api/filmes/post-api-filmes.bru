@@ -17,17 +17,21 @@ headers {
 
 body:json {
   {
-    "anoLancamento": 2026,
-    "classificacaoIndicativa": "Enzo Adventures",
-    "diretor": "Fabiano Schmidth",
+    "anoLancamento": 1964,
+    "classificacaoIndicativa": "{{$randomLoremWord}}",
+    "diretor": "{{$randomLoremWord}}",
     "duracaoMinutos": 300,
-    "genero": "Aventura",
-    "idioma": "PT",
-    "nota": 9,
+    "genero": "{{$randomLoremWord}}",
+    "idioma": "{{$randomLocale}}",
+    "nota": 5.0,
     "titulo": "{{$randomLoremWord}}"
   }
 }
 
 docs {
   Cria um novo filme no banco de dados.
+  field 'diretor' must match pattern: [\\p{L}\\p{M}\\s.'-]*
+  field 'genero' must match pattern: [\\p{L}\\p{M}\\s.'-]*
+  field 'idioma' must match pattern: [\\p{L}\\p{M}\\s.'-]*
 }
+

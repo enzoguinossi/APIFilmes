@@ -23,13 +23,13 @@ public class GlobalExceptionHandler {
 
         Map<String, String> erros = new HashMap<>();
 
-        ex.getBindingResult().getFieldErrors().stream()
+        ex.getBindingResult().getFieldErrors()
                 .forEach(erro -> {
                     erros.put(erro.getField(), erro.getDefaultMessage());
                 });
 
-        problemDetail.setProperty("erros", erros);
-        problemDetail.setProperty("timestamp", LocalDate.now());
+        problemDetail.setProperty("errors", erros);
+        problemDetail.setProperty("timestamp", LocalDateTime.now());
 
         return problemDetail;
     }

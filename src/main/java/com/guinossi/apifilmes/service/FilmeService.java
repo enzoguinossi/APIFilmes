@@ -4,7 +4,9 @@ import com.guinossi.apifilmes.dto.FilmeRequestDTO;
 import com.guinossi.apifilmes.dto.FilmeResponseDTO;
 import com.guinossi.apifilmes.entity.Filme;
 import com.guinossi.apifilmes.repository.FilmeRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -46,7 +48,7 @@ public class FilmeService {
     }
 
     public FilmeResponseDTO alterar(Long id, FilmeRequestDTO filmeRequestDTO) {
-        Filme filme = filmeRepository.findById(id).orElseThrow();
+        Filme filme = filmeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Filme não encontrado"));
         filme.setTitulo(filmeRequestDTO.getTitulo());
         filme.setAnoLancamento(filmeRequestDTO.getAnoLancamento());
         filme.setDiretor(filmeRequestDTO.getDiretor());
@@ -59,6 +61,7 @@ public class FilmeService {
     }
 
     public void deletar(Long id) {
-        filmeRepository.deleteById(id);
+        Filme filme = filmeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Filme não encontrado"));
+        filmeRepository.delete(filme);
     }
 }
